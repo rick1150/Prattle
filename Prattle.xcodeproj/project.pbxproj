@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		753829D61AF2990F00A5010D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753829D51AF2990F00A5010D /* AppDelegate.swift */; };
+		753829D81AF2990F00A5010D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753829D71AF2990F00A5010D /* ViewController.swift */; };
+		753829DB1AF2990F00A5010D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753829D91AF2990F00A5010D /* Main.storyboard */; };
+		753829DD1AF2990F00A5010D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 753829DC1AF2990F00A5010D /* Images.xcassets */; };
+		753829E01AF2990F00A5010D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 753829DE1AF2990F00A5010D /* LaunchScreen.xib */; };
+		753829EC1AF2990F00A5010D /* PrattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753829EB1AF2990F00A5010D /* PrattleTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		753829E61AF2990F00A5010D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 753829C81AF2990F00A5010D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 753829CF1AF2990F00A5010D;
+			remoteInfo = Prattle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		753829D01AF2990F00A5010D /* Prattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		753829D41AF2990F00A5010D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		753829D51AF2990F00A5010D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		753829D71AF2990F00A5010D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		753829DA1AF2990F00A5010D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		753829DC1AF2990F00A5010D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		753829DF1AF2990F00A5010D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		753829E51AF2990F00A5010D /* PrattleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrattleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		753829EA1AF2990F00A5010D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		753829EB1AF2990F00A5010D /* PrattleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrattleTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		753829CD1AF2990F00A5010D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		753829E21AF2990F00A5010D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		753829C71AF2990E00A5010D = {
+			isa = PBXGroup;
+			children = (
+				753829D21AF2990F00A5010D /* Prattle */,
+				753829E81AF2990F00A5010D /* PrattleTests */,
+				753829D11AF2990F00A5010D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		753829D11AF2990F00A5010D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				753829D01AF2990F00A5010D /* Prattle.app */,
+				753829E51AF2990F00A5010D /* PrattleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		753829D21AF2990F00A5010D /* Prattle */ = {
+			isa = PBXGroup;
+			children = (
+				753829D51AF2990F00A5010D /* AppDelegate.swift */,
+				753829D71AF2990F00A5010D /* ViewController.swift */,
+				753829D91AF2990F00A5010D /* Main.storyboard */,
+				753829DC1AF2990F00A5010D /* Images.xcassets */,
+				753829DE1AF2990F00A5010D /* LaunchScreen.xib */,
+				753829D31AF2990F00A5010D /* Supporting Files */,
+			);
+			path = Prattle;
+			sourceTree = "<group>";
+		};
+		753829D31AF2990F00A5010D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				753829D41AF2990F00A5010D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		753829E81AF2990F00A5010D /* PrattleTests */ = {
+			isa = PBXGroup;
+			children = (
+				753829EB1AF2990F00A5010D /* PrattleTests.swift */,
+				753829E91AF2990F00A5010D /* Supporting Files */,
+			);
+			path = PrattleTests;
+			sourceTree = "<group>";
+		};
+		753829E91AF2990F00A5010D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				753829EA1AF2990F00A5010D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		753829CF1AF2990F00A5010D /* Prattle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 753829EF1AF2990F00A5010D /* Build configuration list for PBXNativeTarget "Prattle" */;
+			buildPhases = (
+				753829CC1AF2990F00A5010D /* Sources */,
+				753829CD1AF2990F00A5010D /* Frameworks */,
+				753829CE1AF2990F00A5010D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Prattle;
+			productName = Prattle;
+			productReference = 753829D01AF2990F00A5010D /* Prattle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		753829E41AF2990F00A5010D /* PrattleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 753829F21AF2990F00A5010D /* Build configuration list for PBXNativeTarget "PrattleTests" */;
+			buildPhases = (
+				753829E11AF2990F00A5010D /* Sources */,
+				753829E21AF2990F00A5010D /* Frameworks */,
+				753829E31AF2990F00A5010D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				753829E71AF2990F00A5010D /* PBXTargetDependency */,
+			);
+			name = PrattleTests;
+			productName = PrattleTests;
+			productReference = 753829E51AF2990F00A5010D /* PrattleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		753829C81AF2990F00A5010D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = blockpuppy;
+				TargetAttributes = {
+					753829CF1AF2990F00A5010D = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					753829E41AF2990F00A5010D = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 753829CF1AF2990F00A5010D;
+					};
+				};
+			};
+			buildConfigurationList = 753829CB1AF2990F00A5010D /* Build configuration list for PBXProject "Prattle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 753829C71AF2990E00A5010D;
+			productRefGroup = 753829D11AF2990F00A5010D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				753829CF1AF2990F00A5010D /* Prattle */,
+				753829E41AF2990F00A5010D /* PrattleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		753829CE1AF2990F00A5010D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				753829DB1AF2990F00A5010D /* Main.storyboard in Resources */,
+				753829E01AF2990F00A5010D /* LaunchScreen.xib in Resources */,
+				753829DD1AF2990F00A5010D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		753829E31AF2990F00A5010D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		753829CC1AF2990F00A5010D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				753829D81AF2990F00A5010D /* ViewController.swift in Sources */,
+				753829D61AF2990F00A5010D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		753829E11AF2990F00A5010D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				753829EC1AF2990F00A5010D /* PrattleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		753829E71AF2990F00A5010D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 753829CF1AF2990F00A5010D /* Prattle */;
+			targetProxy = 753829E61AF2990F00A5010D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		753829D91AF2990F00A5010D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				753829DA1AF2990F00A5010D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		753829DE1AF2990F00A5010D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				753829DF1AF2990F00A5010D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		753829ED1AF2990F00A5010D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		753829EE1AF2990F00A5010D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		753829F01AF2990F00A5010D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Prattle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		753829F11AF2990F00A5010D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Prattle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		753829F31AF2990F00A5010D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PrattleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prattle.app/Prattle";
+			};
+			name = Debug;
+		};
+		753829F41AF2990F00A5010D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PrattleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prattle.app/Prattle";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		753829CB1AF2990F00A5010D /* Build configuration list for PBXProject "Prattle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				753829ED1AF2990F00A5010D /* Debug */,
+				753829EE1AF2990F00A5010D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		753829EF1AF2990F00A5010D /* Build configuration list for PBXNativeTarget "Prattle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				753829F01AF2990F00A5010D /* Debug */,
+				753829F11AF2990F00A5010D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		753829F21AF2990F00A5010D /* Build configuration list for PBXNativeTarget "PrattleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				753829F31AF2990F00A5010D /* Debug */,
+				753829F41AF2990F00A5010D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 753829C81AF2990F00A5010D /* Project object */;
+}
