@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
            self.busySpinner.stopAnimating()
            self.busySpinner.hidden = true
            let qnum  = arc4random_uniform( maxN )
-           let quote = self.getNthQuote( qnum )
+           self.getNthQuote( qnum, completion:{(quote:Quote?) -> Void in self.displayQuote(quote)} )
            }
         }
 
@@ -63,53 +63,33 @@ class MainViewController: UIViewController {
     }
     
     
-    func getNthQuote( nth : UInt32 ) -> Quote? {
+    func getNthQuote( nth : UInt32, completion:(quote : Quote? ) -> Void ) -> Void {
+        var rv : Quote? = nil
         var query = PFQuery(className:"Quotes")
-//        query.whereKey("Source", equalTo:"website")
         query.whereKey("AuthorID", equalTo:1)
         query.findObjectsInBackgroundWithBlock {
             (quote: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && quote != nil {
                 println(quote)
+                if let pobj = quote!.first as? PFObject {
+                    rv = self.toQuote( pobj )
+                    completion(quote:rv )
+                }
             } else {
                 println(error)
             }
         }
-        
-//        var rv : Quote? = nil
-//        var query = PFQuery(className:"Quotes")
-//        query.findObjectsInBackgroundWithBlock {
-//            (objects: [AnyObject]?, error: NSError?) -> Void in
-//            if let objects = objects as? [PFObject] {
-//                for object in objects {
-//                    println(object.objectId)
-//                }
-//            }
-//            if let anyObj : AnyObject = objects!.first {
-//                var obj = anyObj as? PFObject
-//                var rv : Quote? = self.toQuote(obj!)
-//            }
-////            if error == nil {
-//                let arv : AnyObject = objects!.first!
-//                if let pfobj = arv as? PFObject {
-//                    rv = self.toQuote(pfobj)
-//                }
-//               self.displayQuote( rv )
-//                }
-//             else {
-//                println("Error: \(error!) \(error!.userInfo!)")
-//            }
-//        }
-//        return( rv )
-        return nil
+//        return rv
     }
     
     func toQuote(pobj : PFObject) -> Quote? {
         var rv : Quote = Quote()
-        let authorID  : String = pobj["AuthodID"] as! String
+        let authorID  : Int = pobj["AuthorID"] as! Int
         let quotetext : String = pobj["Text"] as! String
         println("authorID = \(authorID) quotetext = \(quotetext)")
-        return( nil )
+        rv.author = nil
+        rv.text = quotetext
+        return( rv )
     }
     
     func displayQuote( quote : Quote? ) -> Void {
