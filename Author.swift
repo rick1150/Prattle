@@ -9,6 +9,7 @@
 import Foundation
 
 class Author {
+    var authorID  : Int    = 0
     var firstName : String = ""
     var lastName  : String = ""
     var birthDate : NSDate?

@@ -28,6 +28,7 @@
 		75382A121AF2C96900A5010D /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75382A111AF2C96900A5010D /* Quote.swift */; };
 		75382A141AF2CBBD00A5010D /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75382A131AF2CBBD00A5010D /* Author.swift */; };
 		757473911AF3E78A0007D4F8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757473901AF3E78A0007D4F8 /* MainViewController.swift */; };
+		75EBE2851AF9567300F33585 /* prattle_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 75EBE2841AF9567300F33585 /* prattle_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		75382A111AF2C96900A5010D /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		75382A131AF2CBBD00A5010D /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		757473901AF3E78A0007D4F8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Prattle/MainViewController.swift; sourceTree = "<group>"; };
+		75EBE2841AF9567300F33585 /* prattle_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prattle_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		753829C71AF2990E00A5010D = {
 			isa = PBXGroup;
 			children = (
+				75EBE2831AF9566300F33585 /* Assets */,
 				757473921AF3E7920007D4F8 /* Views */,
 				75382A101AF2C95200A5010D /* Models */,
 				753829F91AF2997D00A5010D /* Frameworks */,
@@ -194,6 +197,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		75EBE2831AF9566300F33585 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				75EBE2841AF9567300F33585 /* prattle_background.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -274,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75EBE2851AF9567300F33585 /* prattle_background.png in Resources */,
 				753829DB1AF2990F00A5010D /* Main.storyboard in Resources */,
 				753829E01AF2990F00A5010D /* LaunchScreen.xib in Resources */,
 				753829DD1AF2990F00A5010D /* Images.xcassets in Resources */,

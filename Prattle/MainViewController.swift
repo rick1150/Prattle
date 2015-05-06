@@ -28,26 +28,55 @@ var GlobalUtilityQueue: dispatch_queue_t {
 var GlobalBackgroundQueue: dispatch_queue_t {
     return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)
 }
+
+
+let kQuoteRefreshed  = "QuoteRefreshed"
+let kAuthorRefreshed = "AuthorRefreshed"
+let notificationCenter = NSNotificationCenter.defaultCenter()
+let mainQueue = NSOperationQueue.mainQueue()
+
 class MainViewController: UIViewController {
 
     @IBOutlet weak var addButton:     UIButton!
     @IBOutlet weak var randomButton:  UIButton!
     @IBOutlet weak var nextButton:    UIButton!
     @IBOutlet weak var quoteTextView: UITextView!
+    @IBOutlet weak var authorTextField: UITextField!
     @IBOutlet weak var busySpinner: UIActivityIndicatorView!
     
+    var currentQuote   : Quote?  = nil
+    var currentAuthor  : Author? = nil
+    var quoteObserver  : NSObjectProtocol?
+    var authorObserver : NSObjectProtocol?
+    
+
+    var numberOfQuotes = 0
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        quoteObserver = notificationCenter.addObserverForName(kQuoteRefreshed,
+                            object: nil, queue: mainQueue) { _ in
+                                println(" quoteUpdated")
+                            self.quoteTextView.text = self.currentQuote?.text }
+        
+        authorObserver = notificationCenter.addObserverForName(kAuthorRefreshed,
+                             object: nil, queue: mainQueue) { _ in
+                             println(" authorUpdated")
+                                
+                             var name = self.currentAuthor!.firstName + " "
+                             name +=  self.currentAuthor!.lastName
+                             self.authorTextField.text = name
+        }
+        
         quoteTextView.text = "Please wait..."
         dispatch_async(GlobalUserInitiatedQueue) {
            var query = PFQuery(className:"Quotes")
-           let maxN  : UInt32 = UInt32(query.countObjects())
-           self.busySpinner.stopAnimating()
-           self.busySpinner.hidden = true
-           let qnum  = arc4random_uniform( maxN )
-           self.getNthQuote( qnum, completion:{(quote:Quote?) -> Void in self.displayQuote(quote)} )
+           self.numberOfQuotes = query.countObjects()
            }
+           self.displayRandomQuote()
         }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,63 +86,89 @@ class MainViewController: UIViewController {
 
     @IBAction func addButtonTapped(sender: AnyObject) {
     }
+    
     @IBAction func randomButtonTapped(sender: AnyObject) {
+        displayRandomQuote()
     }
+    
     @IBAction func nextButtonTapped(sender: AnyObject) {
     }
     
-    
-    func getNthQuote( nth : UInt32, completion:(quote : Quote? ) -> Void ) -> Void {
+    // =====================
+//    func getNthQuote( nth : UInt32, completion:(quote : Quote? ) -> Void ) -> Void {
+    func getNthQuote( nth : UInt32, completion:() -> () ) -> Void {
         var rv : Quote? = nil
+        var num : CGFloat = CGFloat(nth)
         var query = PFQuery(className:"Quotes")
-        query.whereKey("AuthorID", equalTo:1)
-        query.findObjectsInBackgroundWithBlock {
-            (quote: [AnyObject]?, error: NSError?) -> Void in
+        query.whereKey("QuoteID", greaterThanOrEqualTo: num )
+        query.getFirstObjectInBackgroundWithBlock {
+            (quote: AnyObject?, error: NSError?) -> Void in
             if error == nil && quote != nil {
                 println(quote)
-                if let pobj = quote!.first as? PFObject {
+                if let pobj = quote! as? PFObject {
                     rv = self.toQuote( pobj )
-                    completion(quote:rv )
+                    notificationCenter.postNotificationName(kQuoteRefreshed, object: nil)
+                    let aID = rv?.author?.authorID
+                    self.getAuthorWithID(aID!, completion: completion)
                 }
             } else {
                 println(error)
             }
         }
-//        return rv
     }
     
+    // =====================
+    
+    func getAuthorWithID(authorID : Int, completion:( ()->() ))
+    {
+        var auth : Author? = nil
+        var num : CGFloat = CGFloat(authorID)
+        var query = PFQuery(className:"Authors")
+        query.whereKey("AuthorID", equalTo: num )
+        query.getFirstObjectInBackgroundWithBlock {
+            (author: AnyObject?, error: NSError?) -> Void in
+            if error == nil && author != nil {
+                println(author)
+                if let pobj = author! as? PFObject {
+                    auth = self.toAuthor( pobj )
+        
+                }
+            } else {
+                println(error)
+            }
+        }
+    }
+    
+    func toAuthor(pobj : PFObject) -> Author? {
+        var rv : Author = Author()
+        
+    }
+    // =====================
     func toQuote(pobj : PFObject) -> Quote? {
         var rv : Quote = Quote()
         let authorID  : Int = pobj["AuthorID"] as! Int
         let quotetext : String = pobj["Text"] as! String
         println("authorID = \(authorID) quotetext = \(quotetext)")
-        rv.author = nil
+        rv.author = Author()
+        rv.author?.authorID = authorID
         rv.text = quotetext
         return( rv )
     }
     
+    // =====================
     func displayQuote( quote : Quote? ) -> Void {
         if let q = quote {
            quoteTextView.text = q.text
         }
     }
-//        query.whereKey("QuoteID", equalTo: "\(nth )")
-//        
-//        query.getFirstObjectInBackgroundWithBlock{ (success, error) ->  // completion?() }
-//        if error == nil {
-//            if let obj = object as? PFObject
-//            
-//            }
-//            return( rv )
-//        }
-//        println("Successfully retrieved \(objects!.count) scores.")
-//    // Do something with the found objects
-//    if let objects = objects as? [PFObject] {
-//    for object in objects {
-//    println(object.objectId)
-//    }
-//    }
-//    } else {
-//    // Log details of the failure
-//    println("Error: \(error!) \(error!.userInfo!)")
+    
+    
+    // =====================
+    func displayRandomQuote() {
+       let qnum  = arc4random_uniform( UInt32( self.numberOfQuotes))
+//       self.getNthQuote( qnum, completion:{(quote:Quote?) -> Void in self.displayQuote(quote)} )
+       self.getNthQuote( qnum, completion:{() ->() in
+                    notificationCenter.postNotificationName(kAuthorRefreshed, object: nil) } )
+    }
+
 }
