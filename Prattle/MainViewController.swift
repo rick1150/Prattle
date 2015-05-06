@@ -72,8 +72,8 @@ class MainViewController: UIViewController {
         dispatch_async(GlobalUserInitiatedQueue) {
            var query = PFQuery(className:"Quotes")
            self.numberOfQuotes = query.countObjects()
-           }
            self.displayRandomQuote()
+           }
         }
     
     
@@ -107,8 +107,9 @@ class MainViewController: UIViewController {
                 println(quote)
                 if let pobj = quote! as? PFObject {
                     rv = self.toQuote( pobj )
+                    self.currentQuote = rv
                     notificationCenter.postNotificationName(kQuoteRefreshed, object: nil)
-                    let aID = rv?.author?.authorID
+                    let aID = rv?.authorID
                     self.getAuthorWithID(aID!, completion: completion)
                 }
             } else {
@@ -123,15 +124,16 @@ class MainViewController: UIViewController {
     {
         var auth : Author? = nil
         var num : CGFloat = CGFloat(authorID)
-        var query = PFQuery(className:"Authors")
-        query.whereKey("AuthorID", equalTo: num )
+        var query = PFQuery(className:"Author")
+        query.whereKey("ID", equalTo: num )
         query.getFirstObjectInBackgroundWithBlock {
             (author: AnyObject?, error: NSError?) -> Void in
             if error == nil && author != nil {
                 println(author)
                 if let pobj = author! as? PFObject {
                     auth = self.toAuthor( pobj )
-        
+                    self.currentAuthor = auth
+                    notificationCenter.postNotificationName(kAuthorRefreshed, object: nil)
                 }
             } else {
                 println(error)
@@ -141,16 +143,22 @@ class MainViewController: UIViewController {
     
     func toAuthor(pobj : PFObject) -> Author? {
         var rv : Author = Author()
-        
+        rv.authorID  = pobj["ID"] as! Int
+        rv.birthDate = pobj["BirthYear"] as! Int
+        rv.deathDate = pobj["DeathYear"] as! Int
+        rv.firstName = pobj["FirstName"] as! String
+        rv.lastName  = pobj["LastName"] as! String
+        rv.origin    = pobj["Origin"] as! String
+        return( rv )
     }
+    
     // =====================
     func toQuote(pobj : PFObject) -> Quote? {
         var rv : Quote = Quote()
         let authorID  : Int = pobj["AuthorID"] as! Int
         let quotetext : String = pobj["Text"] as! String
         println("authorID = \(authorID) quotetext = \(quotetext)")
-        rv.author = Author()
-        rv.author?.authorID = authorID
+        rv.authorID = authorID
         rv.text = quotetext
         return( rv )
     }
@@ -166,7 +174,7 @@ class MainViewController: UIViewController {
     // =====================
     func displayRandomQuote() {
        let qnum  = arc4random_uniform( UInt32( self.numberOfQuotes))
-//       self.getNthQuote( qnum, completion:{(quote:Quote?) -> Void in self.displayQuote(quote)} )
+        println("there are \(self.numberOfQuotes) quotes in the system")
        self.getNthQuote( qnum, completion:{() ->() in
                     notificationCenter.postNotificationName(kAuthorRefreshed, object: nil) } )
     }

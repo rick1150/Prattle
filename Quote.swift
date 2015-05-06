@@ -201,19 +201,19 @@ enum Topic : String {
 
 class Quote {
     
-    var author : Author?
-    var text   : String = ""
-    var year   : Int    = 0
-    var source : String = ""
-    var fave   : Bool   = false
-    var topic  : Topic  = Topic()
+    var authorID : Int    = 0
+    var text     : String = ""
+    var year     : Int    = 0
+    var source   : String = ""
+    var fave     : Bool   = false
+    var topic    : Topic  = Topic()
     
     
-    convenience init(txt : String, author : Author?, year : Int?, source : String?, fave : Bool, topic : Topic?) {
+    convenience init(txt : String, author : Int, year : Int?, source : String?, fave : Bool, topic : Topic?) {
         self.init()
-        self.text   = txt
-        self.author = author
-        self.fave   = fave
+        self.text     = txt
+        self.authorID = author
+        self.fave     = fave
         if let yr = year {
             self.year = yr
         }
@@ -226,10 +226,16 @@ class Quote {
     }
     
     convenience init( txt : String ) {
-        self.init(txt: txt, author: nil, year: 0, source: nil, fave: false, topic: .Undefined)
+        self.init(txt: txt, author: 0, year: 0, source: nil, fave: false, topic: .Undefined)
     }
     
-    convenience init( txt : String, author: Author? ) {
+    convenience init( txt : String, author: Int ) {
         self.init(txt: txt, author: author, year: 0, source: nil, fave: false, topic: .Undefined)
     }
 }
+
+
+
+
+
+
