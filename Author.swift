@@ -7,12 +7,24 @@
 //
 
 import Foundation
+import Parse
 
 class Author {
+    static var _currentAuthor : Author? = nil
+    
     var authorID  : Int    = 0
     var firstName : String = ""
     var lastName  : String = ""
-    var birthDate : Int    = 0
-    var deathDate : Int    = 0
+    var birthYear : Int    = 0
+    var deathYear : Int    = 0
     var origin    : String = ""
+    var objectID  : String = ""
+    
+    var currentAuthor : Author? {
+        get { return Author._currentAuthor }
+        set { Author._currentAuthor = newValue }
+    }
+    
+    
+
 }

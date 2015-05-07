@@ -186,7 +186,7 @@ enum Topic : String {
     case Worrying        = "Worrying"
     case Worship         = "Worship"
     
-    case Undefined       = "none"
+    case Undefined       = "undef"
     
     init() {
        self = .Undefined
@@ -201,6 +201,7 @@ enum Topic : String {
 
 class Quote {
     
+    var objectID : String = ""
     var authorID : Int    = 0
     var text     : String = ""
     var year     : Int    = 0
