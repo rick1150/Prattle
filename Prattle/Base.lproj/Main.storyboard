@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Do6-oY-LVv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="uWj-uQ-Lel">
+            <objects>
+                <navigationController id="Do6-oY-LVv" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XQt-oZ-2Fs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="bzw-yL-eT7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3g-6r-flS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-939" y="407.25"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -25,6 +41,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgL-Sw-C9k">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Random">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -34,10 +51,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMk-Fz-PqG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Add">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wUI-IL-4dR"/>
+                                    <segue destination="Q5q-F5-07c" kind="show" id="9kh-Si-Vuw"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.74999999999999978" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-Tg-9jP">
@@ -66,6 +85,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YV-jp-7kl">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Next">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -176,18 +196,6 @@
                                 <exclude reference="WK1-ER-lk1"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="191-AS-SeQ"/>
-                                <exclude reference="4xq-y5-yK5"/>
-                                <exclude reference="HqV-jW-1ZW"/>
-                                <exclude reference="ZEv-xx-VmQ"/>
-                                <exclude reference="tKF-qn-cu5"/>
-                                <exclude reference="y2b-J4-edM"/>
-                                <exclude reference="6gn-iG-bwA"/>
-                                <exclude reference="7oa-bg-6Bv"/>
-                                <exclude reference="PHK-TZ-a9T"/>
-                                <exclude reference="aDa-Hj-XJo"/>
-                                <exclude reference="p6F-FH-JJH"/>
-                                <exclude reference="srD-OL-Sfc"/>
                                 <exclude reference="EdU-fg-yWL"/>
                                 <exclude reference="WDY-c2-Xbs"/>
                                 <exclude reference="a1x-2x-Aen"/>
@@ -207,6 +215,14 @@
                                 <exclude reference="gaZ-BC-BBj"/>
                                 <exclude reference="ipZ-hw-B8K"/>
                                 <exclude reference="oOz-Z4-7ve"/>
+                                <exclude reference="9bw-kV-3V0"/>
+                                <exclude reference="Bpe-hd-xhR"/>
+                                <exclude reference="CN8-YT-MAP"/>
+                                <exclude reference="Jif-co-hil"/>
+                                <exclude reference="gZZ-kd-lQr"/>
+                                <exclude reference="hXx-3K-iCk"/>
+                                <exclude reference="s2r-nI-UOA"/>
+                                <exclude reference="zBz-Sa-WyV"/>
                                 <exclude reference="6jC-GJ-LlP"/>
                                 <exclude reference="88o-7j-elY"/>
                                 <exclude reference="DML-7o-2eC"/>
@@ -216,14 +232,18 @@
                                 <exclude reference="fG2-wk-Hec"/>
                                 <exclude reference="oUh-U1-3gM"/>
                                 <exclude reference="p1D-I4-rB4"/>
-                                <exclude reference="9bw-kV-3V0"/>
-                                <exclude reference="Bpe-hd-xhR"/>
-                                <exclude reference="CN8-YT-MAP"/>
-                                <exclude reference="Jif-co-hil"/>
-                                <exclude reference="gZZ-kd-lQr"/>
-                                <exclude reference="hXx-3K-iCk"/>
-                                <exclude reference="s2r-nI-UOA"/>
-                                <exclude reference="zBz-Sa-WyV"/>
+                                <exclude reference="6gn-iG-bwA"/>
+                                <exclude reference="7oa-bg-6Bv"/>
+                                <exclude reference="PHK-TZ-a9T"/>
+                                <exclude reference="aDa-Hj-XJo"/>
+                                <exclude reference="p6F-FH-JJH"/>
+                                <exclude reference="srD-OL-Sfc"/>
+                                <exclude reference="191-AS-SeQ"/>
+                                <exclude reference="4xq-y5-yK5"/>
+                                <exclude reference="HqV-jW-1ZW"/>
+                                <exclude reference="ZEv-xx-VmQ"/>
+                                <exclude reference="tKF-qn-cu5"/>
+                                <exclude reference="y2b-J4-edM"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -237,18 +257,6 @@
                                 <include reference="WK1-ER-lk1"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="191-AS-SeQ"/>
-                                <include reference="4xq-y5-yK5"/>
-                                <include reference="HqV-jW-1ZW"/>
-                                <include reference="ZEv-xx-VmQ"/>
-                                <include reference="tKF-qn-cu5"/>
-                                <include reference="y2b-J4-edM"/>
-                                <exclude reference="6gn-iG-bwA"/>
-                                <exclude reference="7oa-bg-6Bv"/>
-                                <include reference="PHK-TZ-a9T"/>
-                                <include reference="aDa-Hj-XJo"/>
-                                <include reference="p6F-FH-JJH"/>
-                                <exclude reference="srD-OL-Sfc"/>
                                 <include reference="EdU-fg-yWL"/>
                                 <include reference="WDY-c2-Xbs"/>
                                 <include reference="a1x-2x-Aen"/>
@@ -268,6 +276,14 @@
                                 <exclude reference="gaZ-BC-BBj"/>
                                 <exclude reference="ipZ-hw-B8K"/>
                                 <exclude reference="oOz-Z4-7ve"/>
+                                <include reference="9bw-kV-3V0"/>
+                                <exclude reference="Bpe-hd-xhR"/>
+                                <include reference="CN8-YT-MAP"/>
+                                <exclude reference="Jif-co-hil"/>
+                                <exclude reference="gZZ-kd-lQr"/>
+                                <exclude reference="hXx-3K-iCk"/>
+                                <include reference="s2r-nI-UOA"/>
+                                <exclude reference="zBz-Sa-WyV"/>
                                 <exclude reference="6jC-GJ-LlP"/>
                                 <include reference="88o-7j-elY"/>
                                 <exclude reference="DML-7o-2eC"/>
@@ -277,17 +293,22 @@
                                 <exclude reference="fG2-wk-Hec"/>
                                 <include reference="oUh-U1-3gM"/>
                                 <exclude reference="p1D-I4-rB4"/>
-                                <include reference="9bw-kV-3V0"/>
-                                <exclude reference="Bpe-hd-xhR"/>
-                                <include reference="CN8-YT-MAP"/>
-                                <exclude reference="Jif-co-hil"/>
-                                <exclude reference="gZZ-kd-lQr"/>
-                                <exclude reference="hXx-3K-iCk"/>
-                                <include reference="s2r-nI-UOA"/>
-                                <exclude reference="zBz-Sa-WyV"/>
+                                <exclude reference="6gn-iG-bwA"/>
+                                <exclude reference="7oa-bg-6Bv"/>
+                                <include reference="PHK-TZ-a9T"/>
+                                <include reference="aDa-Hj-XJo"/>
+                                <include reference="p6F-FH-JJH"/>
+                                <exclude reference="srD-OL-Sfc"/>
+                                <include reference="191-AS-SeQ"/>
+                                <include reference="4xq-y5-yK5"/>
+                                <include reference="HqV-jW-1ZW"/>
+                                <include reference="ZEv-xx-VmQ"/>
+                                <include reference="tKF-qn-cu5"/>
+                                <include reference="y2b-J4-edM"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="0kA-un-Mmw"/>
                     <connections>
                         <outlet property="addButton" destination="TMk-Fz-PqG" id="tav-Gs-JlI"/>
                         <outlet property="authorTextField" destination="b87-GC-sgx" id="eS1-MV-qye"/>
@@ -299,7 +320,109 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="579" y="366.75"/>
+            <point key="canvasLocation" x="-133.5" y="411"/>
+        </scene>
+        <!--Add Quote-->
+        <scene sceneID="ezc-6c-cGa">
+            <objects>
+                <viewController id="Q5q-F5-07c" customClass="AddQuoteViewController" customModule="Prattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ll7-iB-K3D"/>
+                        <viewControllerLayoutGuide type="bottom" id="V5N-vP-ejM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7I4-h2-PVp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prattle_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="yoT-kQ-UrF">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcG-G1-Bvy">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="147" width="230" height="21"/>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaC-DR-4hp">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="181" width="368" height="155"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="Q5q-F5-07c" id="B1T-XL-tm3"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lv3-0O-bjy">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="356" width="230" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lea-QK-ZNO">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="385" width="368" height="30"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="Q5q-F5-07c" id="6MK-d9-gpm"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="yoT-kQ-UrF"/>
+                                <exclude reference="JcG-G1-Bvy"/>
+                                <exclude reference="eaC-DR-4hp"/>
+                                <exclude reference="Lv3-0O-bjy"/>
+                                <exclude reference="lea-QK-ZNO"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="yoT-kQ-UrF"/>
+                                <include reference="JcG-G1-Bvy"/>
+                                <include reference="eaC-DR-4hp"/>
+                                <include reference="Lv3-0O-bjy"/>
+                                <include reference="lea-QK-ZNO"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add Quote" id="ZEo-TV-6Ja">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="cCP-8w-gcx">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="Q5q-F5-07c" id="94r-B5-u4d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="Lv3-0O-bjy" id="8BZ-rl-PSy"/>
+                        <outlet property="authorTextField" destination="lea-QK-ZNO" id="yEE-ec-Lvb"/>
+                        <outlet property="doneButton" destination="cCP-8w-gcx" id="ogH-bx-fSd"/>
+                        <outlet property="quoteLabel" destination="JcG-G1-Bvy" id="lke-VG-LO5"/>
+                        <outlet property="quoteTextView" destination="eaC-DR-4hp" id="b6f-1h-FaQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WD8-Xo-HCT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="409.5"/>
         </scene>
     </scenes>
     <resources>
