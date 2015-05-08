@@ -124,13 +124,16 @@ class authorStore {
                 
                 var rv : [Author]? = nil
                 if authors != nil && authors!.count > 0 {
+                    log.verbose("found at least one author with name")
                     rv = [Author]()
                     let alist = authors as! [PFObject]?
                     for pfobj in alist! {
                         let auth = self.toAuthor(pfobj)
                         rv!.append( auth! )
                     }
+                    log.debug(" found \(rv!.count) matches")
                 }
+                else { log.debug("found no matches ") }
                 
                 if error == nil {
                     completion( authors: rv )
@@ -140,7 +143,7 @@ class authorStore {
             }
         }
         else
-        {   println("no last name supplied -- no match")
+        {   log.verbose("no last name supplied -- no match")
             completion( authors: nil )
         }
         log.verbose("-")

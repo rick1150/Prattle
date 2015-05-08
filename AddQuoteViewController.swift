@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import XCGLogger
 
-class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     var quoteDirty  = false
     var authorDirty = false
@@ -19,11 +20,26 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet weak var quoteTextView   : UITextView!
     @IBOutlet weak var authorLabel     : UILabel!
     @IBOutlet weak var authorTextField : UITextField!
-    
     @IBOutlet weak var doneButton      : UIBarButtonItem!
+    @IBOutlet weak var authorPickerView: UIPickerView!
     
+    @IBOutlet weak var multipleMatchTextLabel: UILabel!
+    
+/*==============================================================================
+ * Method: 
+ * 
+ * Description:
+ *
+ * Parameters:
+ *
+ * Caveats:
+ *
+ * Returns:
+ *============================================================================*/
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        log.verbose("+")
         authorObserver = notificationCenter.addObserverForName(kAuthorFound,
             object: nil, queue: mainQueue, usingBlock:  { (note:NSNotification!) in
                 var auths : [Author]? = note.object as! [Author]?
@@ -36,32 +52,86 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 else
                 {   self.authorID = auths![0].authorID }
         })
+        log.verbose("observer for AuthorFound added")
         // Do any additional setup after loading the view.
+        log.verbose("-")
     }
     
+    /*==============================================================================
+    * Method:
+    *
+    * Description:
+    *
+    * Parameters:
+    *
+    * Caveats:
+    *
+    * Returns:
+    *============================================================================*/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        log.error(" * DidReceiveMemoryWarning *")
         // Dispose of any resources that can be recreated.
     }
     
+    
+    /*==============================================================================
+    * Method:
+    *
+    * Description:
+    *
+    * Parameters:
+    *
+    * Caveats:
+    *
+    * Returns:
+    *============================================================================*/
    // MARK: - textField Delegate methods
     func textFieldDidBeginEditing(textField: UITextField) {
-        println("+/- textFieldDidBeginEditing")
+        log.verbose("+/-")
         authorDirty = true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) { println("+/- textFieldDidEndEditing") }
-   // MARK: - textView Delegate methods
-    func textViewDidChange(textView: UITextView) {
-        println("+/- textViewDidChange")
+    /*==============================================================================
+    * Method:
+    *
+    * Description:
+    *
+    * Parameters:
+    *
+    * Caveats:
+    *
+    * Returns:
+    *============================================================================*/
+    
+
+    func textViewDidBeginEditing(textView: UITextView) {
+        log.verbose("+/-")
+        if !quoteDirty {
+            quoteTextView.text = ""
+        }
         quoteDirty = true
     }
     
-    func textViewDidBeginEditing(textView: UITextView) { println("+/- textViewDidBeginEditing") }
-    func textViewDidEndEditing(textView: UITextView)   { println("+/- textViewDidEndEditing"  ) }
    
     
+    /*==============================================================================
+    * Method:
+    *
+    * Description:
+    *
+    * Parameters:
+    *
+    * Caveats:
+    *
+    * Returns:
+    *============================================================================*/
+    
+
     @IBAction func doneButtonTapped(sender: AnyObject) {
+        log.verbose("+")
+        log.verbose("author spec: \(self.authorTextField.text) ")
+        log.verbose("quote text:  \(self.quoteTextView.text) ")
         if authorDirty {
             let names = authorTextField.text.splitAtChar(" ")
             var fname : String = ""
@@ -82,6 +152,26 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 notificationCenter.postNotificationName(kAuthorFound, object: authors)
                  })
         }
+        
+        quoteStore.shared.quoteAlreadyExists( quoteTextView.text, completion:{(exists : Bool) -> Void in
+            if exists { println("duplicate quote") }
+            else { println(" new quote") }
+            })
     }
     
+   
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 0
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return("")
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    }
 }

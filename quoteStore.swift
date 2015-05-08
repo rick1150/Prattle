@@ -51,8 +51,19 @@ class quoteStore {
         }
     }
     
+    func quoteAlreadyExists( qstr : String, completion:(exists : Bool) -> Void  ) {
+        let md5 = qstr.computeFlatMD5()
+        var query = PFQuery(className: "Quotes")
+        query.whereKey("MD5", equalTo: md5 )
+        query.getFirstObjectInBackgroundWithBlock {
+            (quote: AnyObject?, error : NSError?) in
+            let rv = (quote == nil) ? false : true
+            completion( exists: rv )
+        }
+    }
+    
+        
     func getNthQuote( nth : Int, completion:(quote: Quote) -> () ) -> Void {
-//        var rv : Quote? = nil
         var query = PFQuery(className:"Quotes")
             query.whereKey("QuoteID", greaterThanOrEqualTo: nth )
             query.getFirstObjectInBackgroundWithBlock {

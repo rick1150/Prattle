@@ -172,9 +172,6 @@ func trimstr( ) -> String?
  *
  * Returns: String
  *============================================================================*/
-
-    
-    
     func replaceEachChar ( new : Character, old : Character ) -> String {
         var rv : String = self
         var s  = Array( self )
@@ -214,8 +211,56 @@ func trimstr( ) -> String?
 
         return( rv )
     }
+    
+    /*==============================================================================
+    * Method: func md5() -> String!
+    *
+    * Description: computes and returns the MD5 hash of the caller.
+    *
+    * Parameters: none ( void )
+    *
+    * Caveats: copied (stolen) verbatim from 
+    *          https://gist.github.com/f6d71f03661f7147547d.git
+    *
+    * Returns: String!
+    *============================================================================*/
+    func md5() -> String! {
+        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
+        let strLen = CUnsignedInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        
+        CC_MD5(str!, strLen, result)
+        
+        var hash = NSMutableString()
+        for i in 0..<digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        
+        result.destroy()
+        
+        return String(format: hash as String)
+    }
 
-
+    /*==============================================================================
+    * Method: func computeFlatMD5() -> String! {
+    *
+    * Description: computes the MD5 hash value of the caller after having all
+    * space removed, and converted to all uppercase.  Used to compare strings
+    * that may have different formatting.
+    *
+    * Parameters: none ( void )
+    *
+    * Caveats: none known.
+    *
+    * Returns: String!
+    *============================================================================*/
+    func computeFlatMD5() -> String! {
+        let str = self.purge(.WhiteSpace)
+        let upper = str?.uppercaseString
+        let rv = upper?.md5()
+        return( rv )
+    }
 }
 
 
