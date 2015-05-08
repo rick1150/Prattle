@@ -109,6 +109,7 @@ class authorStore {
     // looks for matches for both first (if defined) and lastname.  This may result in more than
     // one (depending on what is entered) so an array of matches is used the parameter to the closure.
     func findAuthorByName(fname : String, lname : String, completion:( (authors : [Author]? )->() )) {
+        log.verbose("+ fname = \(fname) lname = \(lname)")
         var auth : Author? = nil
         
         var query = PFQuery(className:"Author")
@@ -120,8 +121,19 @@ class authorStore {
             query.whereKey("LastName", equalTo: lname )
             query.findObjectsInBackgroundWithBlock {
                 (authors: [AnyObject]?, error: NSError?) -> Void in
+                
+                var rv : [Author]? = nil
+                if authors != nil && authors!.count > 0 {
+                    rv = [Author]()
+                    let alist = authors as! [PFObject]?
+                    for pfobj in alist! {
+                        let auth = self.toAuthor(pfobj)
+                        rv!.append( auth! )
+                    }
+                }
+                
                 if error == nil {
-                    completion( authors: authors as? [Author] )
+                    completion( authors: rv )
                 }
                 else
                 {   completion( authors: nil ); println(error) }
@@ -130,5 +142,7 @@ class authorStore {
         else
         {   println("no last name supplied -- no match")
             completion( authors: nil )
-        }    }
+        }
+        log.verbose("-")
+    }
 }
