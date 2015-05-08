@@ -31,6 +31,7 @@
 		758C1D2A1AFBEF92008A47C8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758C1D291AFBEF92008A47C8 /* MainViewController.swift */; };
 		758C1D301AFBF17E008A47C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758C1D2E1AFBF17E008A47C8 /* Main.storyboard */; };
 		758C1D321AFBF22F008A47C8 /* AddQuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758C1D311AFBF22F008A47C8 /* AddQuoteViewController.swift */; };
+		758C1D431AFCF8BD008A47C8 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758C1D3E1AFCF6CE008A47C8 /* XCGLogger.framework */; };
 		75EBE2851AF9567300F33585 /* prattle_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 75EBE2841AF9567300F33585 /* prattle_background.png */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 753829CF1AF2990F00A5010D;
 			remoteInfo = Prattle;
+		};
+		758C1D3D1AFCF6CE008A47C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 758C1D371AFCF6CE008A47C8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55E3EE4519D76F280068C3A7;
+			remoteInfo = "XCGLogger (iOS)";
+		};
+		758C1D3F1AFCF6CE008A47C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 758C1D371AFCF6CE008A47C8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 554DF41719D76FE7005708BE;
+			remoteInfo = "XCGLogger (OS X)";
+		};
+		758C1D411AFCF6CE008A47C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 758C1D371AFCF6CE008A47C8 /* XCGLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55E3EE5019D76F280068C3A7;
+			remoteInfo = XCGLoggerTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -73,6 +95,7 @@
 		758C1D291AFBEF92008A47C8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		758C1D2F1AFBF17E008A47C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		758C1D311AFBF22F008A47C8 /* AddQuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddQuoteViewController.swift; sourceTree = "<group>"; };
+		758C1D371AFCF6CE008A47C8 /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = XCGLogger/Library/XCGLogger.xcodeproj; sourceTree = "<group>"; };
 		75EBE2841AF9567300F33585 /* prattle_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prattle_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758C1D431AFCF8BD008A47C8 /* XCGLogger.framework in Frameworks */,
 				75382A0E1AF29A6300A5010D /* libsqlite3.dylib in Frameworks */,
 				75382A0F1AF29A6300A5010D /* libz.dylib in Frameworks */,
 				75382A071AF29A2600A5010D /* MobileCoreServices.framework in Frameworks */,
@@ -118,6 +142,7 @@
 				753829D21AF2990F00A5010D /* Prattle */,
 				753829E81AF2990F00A5010D /* PrattleTests */,
 				753829D11AF2990F00A5010D /* Products */,
+				758C1D371AFCF6CE008A47C8 /* XCGLogger.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +239,16 @@
 			name = Stores;
 			sourceTree = "<group>";
 		};
+		758C1D381AFCF6CE008A47C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				758C1D3E1AFCF6CE008A47C8 /* XCGLogger.framework */,
+				758C1D401AFCF6CE008A47C8 /* XCGLogger.framework */,
+				758C1D421AFCF6CE008A47C8 /* XCGLoggerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		75EBE2831AF9566300F33585 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +324,12 @@
 			mainGroup = 753829C71AF2990E00A5010D;
 			productRefGroup = 753829D11AF2990F00A5010D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 758C1D381AFCF6CE008A47C8 /* Products */;
+					ProjectRef = 758C1D371AFCF6CE008A47C8 /* XCGLogger.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				753829CF1AF2990F00A5010D /* Prattle */,
@@ -296,6 +337,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		758C1D3E1AFCF6CE008A47C8 /* XCGLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XCGLogger.framework;
+			remoteRef = 758C1D3D1AFCF6CE008A47C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		758C1D401AFCF6CE008A47C8 /* XCGLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XCGLogger.framework;
+			remoteRef = 758C1D3F1AFCF6CE008A47C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		758C1D421AFCF6CE008A47C8 /* XCGLoggerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = XCGLoggerTests.xctest;
+			remoteRef = 758C1D411AFCF6CE008A47C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		753829CE1AF2990F00A5010D /* Resources */ = {
@@ -375,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ALWAYS_SEARCH_USER_PATHS[arch=*]" = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

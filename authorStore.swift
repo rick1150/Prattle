@@ -8,17 +8,21 @@
 
 import Foundation
 import Parse
+import XCGLogger
 
 class authorStore {
     static let shared = authorStore()
     
     func createAuthor(author : Author, completion:(success : Bool, error : NSError?) -> Void ){
+        log.verbose("+")
         let pfobject = toPFObject(author)
         pfobject.saveInBackgroundWithBlock(completion)
+        log.verbose("-")
         }
 
     private func toPFObject( author: Author ) -> PFObject
     {
+        log.verbose("+")
         let pfobj = PFObject(className: "Author")
         pfobj["ID"       ] = author.authorID
         pfobj["BirthYear"] = author.birthYear
@@ -26,12 +30,15 @@ class authorStore {
         pfobj["FirstName"] = author.firstName
         pfobj["LastName"]  = author.lastName
         pfobj["Origin"]    = author.origin
+        log.verbose("firstname = \(author.firstName) lastname = \(author.lastName)")
+        log.verbose("-")
         return( pfobj )
     }
 
    
     func getAuthorWithID(authorID : Int, completion:( (author : Author )->() ))
     {
+        log.verbose("+ authorID = \(authorID)")
         var auth : Author? = nil
         var num  : CGFloat = CGFloat(authorID)
         
@@ -48,10 +55,12 @@ class authorStore {
                 println(error)
             }
         }
+        log.verbose("-")
     }
 
 
     func updateAuthor( author : Author ){
+        log.verbose("+ author = \(author.firstName) \(author.lastName)")
         let objectID = author.objectID
         var query = PFQuery(className:"Author")
         query.getObjectInBackgroundWithId(objectID){
@@ -66,6 +75,7 @@ class authorStore {
                 }
             }
         }
+        log.verbose("-")
     }
     
     func deleteAuthor( author : Author ) {
@@ -78,7 +88,6 @@ class authorStore {
         pfauthor["BirthYear"] = author.birthYear
         pfauthor["DeathYear"] = author.deathYear
         pfauthor["Origin"   ] = author.origin
-//        pfauthor["objectID" ] = author.objectID
         pfauthor.objectId     = author.objectID
     }
         
@@ -91,7 +100,6 @@ class authorStore {
         rv.firstName = pobj["FirstName"] as! String
         rv.lastName  = pobj["LastName" ] as! String
         rv.origin    = pobj["Origin"   ] as! String
-//        rv.objectID  = pobj["objectID" ] as! String
         rv.objectID  = pobj.objectId!
         return( rv )
     }

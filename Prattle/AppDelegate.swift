@@ -10,6 +10,9 @@ import UIKit
 
     import Parse
     import Bolts
+    import XCGLogger
+
+let log = XCGLogger.defaultInstance()
 
     @UIApplicationMain
     class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +29,7 @@ import UIKit
             
             // [Optional] Track statistics around application opens.
             PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-            
+           log.setup(logLevel: .Verbose, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "/tmp/prattle.log.txt", fileLogLevel: .Debug)
             // ...
             return( true )
         }
