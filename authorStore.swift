@@ -104,14 +104,31 @@ class authorStore {
         return( rv )
     }
     
-//    func toPFObject( author: Author ) -> PFObject {
-//        let rv = PFObject(className: "Author")
-//        rv["FirstName"] = author.firstName
-//        rv["LastName" ] = author.lastName
-//        rv["BirthYear"] = author.birthYear
-//        rv["DeathYear"] = author.deathYear
-//        rv["Origin"   ] = author.origin
-//        rv["objectID" ] = author.objectID
-//        return( rv )
-//    }
+
+    // MARK: - findAuthorByName
+    // looks for matches for both first (if defined) and lastname.  This may result in more than
+    // one (depending on what is entered) so an array of matches is used the parameter to the closure.
+    func findAuthorByName(fname : String, lname : String, completion:( (authors : [Author]? )->() )) {
+        var auth : Author? = nil
+        
+        var query = PFQuery(className:"Author")
+        
+        if !fname.isEmpty {
+            query.whereKey("FirstName", equalTo: fname )
+        }
+        if !lname.isEmpty {
+            query.whereKey("LastName", equalTo: lname )
+            query.findObjectsInBackgroundWithBlock {
+                (authors: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    completion( authors: authors as? [Author] )
+                }
+                else
+                {   completion( authors: nil ); println(error) }
+            }
+        }
+        else
+        {   println("no last name supplied -- no match")
+            completion( authors: nil )
+        }    }
 }

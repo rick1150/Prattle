@@ -32,6 +32,8 @@ var GlobalBackgroundQueue: dispatch_queue_t {
 
 let kQuoteRefreshed  = "QuoteRefreshed"
 let kAuthorRefreshed = "AuthorRefreshed"
+let kAuthorFound     = "AuthorFound"
+
 let notificationCenter = NSNotificationCenter.defaultCenter()
 let mainQueue = NSOperationQueue.mainQueue()
 
