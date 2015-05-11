@@ -13,7 +13,7 @@ import XCGLogger
 class authorStore {
     static let shared = authorStore()
     
-    func createAuthor(author : Author, completion:(success : Bool, error : NSError?) -> Void ){
+    func createAuthor(author : Author, completion:((success : Bool, error : NSError?) -> Void )?){
         log.verbose("+")
         let pfobject = toPFObject(author)
         pfobject.saveInBackgroundWithBlock(completion)
@@ -44,6 +44,7 @@ class authorStore {
         
         var query = PFQuery(className:"Author")
         query.whereKey("ID", equalTo: num )
+        query.whereKey("Valid", equalTo: true )
         query.getFirstObjectInBackgroundWithBlock {
             (author: AnyObject?, error: NSError?) -> Void in
             if error == nil && author != nil {
@@ -148,4 +149,22 @@ class authorStore {
         }
         log.verbose("-")
     }
+    
+    /*==============================================================================
+    * Method: func getNewAuthorID() -> Int {
+    *
+    * Description: returns an Int to be used as a unique ID for author object
+    *
+    * Parameters: none ( void )
+    *
+    * Caveats: returns the number of authors in the authorStore + 1
+    * (deletions could create duplicates)
+    *
+    * Returns: Int
+    *============================================================================*/
+    func getNewAuthorID() -> Int {
+        var query = PFQuery(className:"Author")
+        let rv = query.countObjects() + 1
+        return( rv )
+        }
 }
