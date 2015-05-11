@@ -14,32 +14,40 @@ class quoteStore {
     
     var count = 0
     
-    func createQuote( quote : Quote, completion:(success:Bool, error: NSError?) -> Void ){
+    func createQuote( quote : Quote, completion:((success:Bool, error: NSError?) -> Void)? ){
+        log.verbose("+")
         let pfobject = toPFObject(quote)
         pfobject.saveInBackgroundWithBlock(completion)
+        log.verbose("-")
         }
     
     
     private func toPFObject(quote : Quote ) -> PFObject {
+        log.verbose("+")
         var pfobj = PFObject(className: "Quotes")
         updatePFObject( &pfobj, quote: quote )
+        log.verbose("-")
        return(pfobj)
         }
     
     private func updatePFObject( inout pfobj : PFObject, quote : Quote ){
-        // pfobj["ObjectID"] = quote.objectID
-        pfobj.objectId    = quote.objectID
+        log.verbose("+")
+        if quote.objectID != nil {
+            pfobj.objectId    = quote.objectID
+        }
         pfobj["AuthorID"] = quote.authorID
         pfobj["Text"    ] = quote.text
         pfobj["Year"    ] = quote.year
         pfobj["Source"  ] = quote.source
         pfobj["Favorite"] = quote.fave
         pfobj["Topic"   ] = quote.topic.rawValue
+        log.verbose("-")
     }
     
     func updateQuote( quote : Quote ){
+        log.verbose("+")
         var query = PFQuery(className:"Quotes")
-        query.getObjectInBackgroundWithId(quote.objectID) {
+        query.getObjectInBackgroundWithId(quote.objectID!) {
             (pfquote : PFObject?, error: NSError?) -> Void in
             if error != nil {
                 println(error)
@@ -49,10 +57,18 @@ class quoteStore {
                 pfquote!.saveInBackground()
             }
         }
+        log.verbose("-")
     }
     
     func quoteAlreadyExists( qstr : String, completion:(exists : Bool) -> Void  ) {
+        log.verbose("+")
         let md5 = qstr.computeFlatMD5()
+        quoteSignatureAlreadyExists(md5, completion: completion )
+        log.verbose("-")
+    }
+    
+    func quoteSignatureAlreadyExists( md5 : String, completion:(exists:Bool) -> Void ) {
+        log.verbose("+")
         var query = PFQuery(className: "Quotes")
         query.whereKey("MD5", equalTo: md5 )
         query.getFirstObjectInBackgroundWithBlock {
@@ -60,10 +76,12 @@ class quoteStore {
             let rv = (quote == nil) ? false : true
             completion( exists: rv )
         }
+        log.verbose("-")
     }
     
         
     func getNthQuote( nth : Int, completion:(quote: Quote) -> () ) -> Void {
+        log.verbose("+")
         var query = PFQuery(className:"Quotes")
             query.whereKey("QuoteID", greaterThanOrEqualTo: nth )
             query.getFirstObjectInBackgroundWithBlock {
@@ -87,6 +105,7 @@ class quoteStore {
                     println(error)
                 }
             }
+        log.verbose("-")
         }
 
 private func toQuote( pfobj : PFObject ) -> Quote {
@@ -110,6 +129,7 @@ private func toQuote( pfobj : PFObject ) -> Quote {
     return( rv )
 }
 
+    
 }
 
 
