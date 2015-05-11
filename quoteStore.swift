@@ -41,6 +41,7 @@ class quoteStore {
         pfobj["Source"  ] = quote.source
         pfobj["Favorite"] = quote.fave
         pfobj["Topic"   ] = quote.topic.rawValue
+        pfobj["MD5"     ] = quote.md5
         log.verbose("-")
     }
     

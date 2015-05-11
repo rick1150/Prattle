@@ -255,7 +255,9 @@ class Quote {
     convenience init( txt : String, md5: String ) {
         self.init(txt: txt, author: 0, year: 0, source: nil, fave: false, md5: md5, topic: .Undefined)
     }
-}
+    convenience init( txt : String, md5: String, source : String ) {
+        self.init(txt: txt, author: 0, year: 0, source: source, fave: false, md5: md5, topic: .Undefined)
+    }}
 
 
 

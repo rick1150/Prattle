@@ -28,9 +28,8 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet weak var authorLabel     : UILabel!
     @IBOutlet weak var authorTextField : UITextField!
     @IBOutlet weak var doneButton      : UIBarButtonItem!
-    @IBOutlet weak var authorPickerView: UIPickerView!
-    
-    @IBOutlet weak var multipleMatchTextLabel: UILabel!
+    @IBOutlet weak var sourceLabel     : UILabel!
+    @IBOutlet weak var sourceTextField : UITextField!
     
 /*==============================================================================
  * Method: 
@@ -154,7 +153,7 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 if exists { println("duplicate quote") }
                 else {
                     println(" new quote")
-                    let quote = Quote( txt: self.quoteTextView.text, md5: md5 )
+                    let quote = Quote( txt: self.quoteTextView.text, md5: md5, source: self.sourceTextField.text )
                         self.addNewQuote( quote )
                 }
             })
@@ -245,7 +244,6 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
         while ( authorID == QueryPending && !stop) { usleep(addLoopSleepTime) }
         if authorID == AuthorNotFound {
             log.verbose(" author not found -- adding new")
-  //          addNewAuthor( authorTextField.text )
         }
         else { quote.authorID = authorID }
         quoteStore.shared.createQuote( quote, completion:{(success, error) -> Void in
