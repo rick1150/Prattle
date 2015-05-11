@@ -201,16 +201,28 @@ enum Topic : String {
 
 class Quote {
     
-    var objectID : String = ""
-    var authorID : Int    = 0
-    var text     : String = ""
-    var year     : Int    = 0
-    var source   : String = ""
-    var fave     : Bool   = false
-    var topic    : Topic  = Topic()
+    var objectID : String? = nil
+    var authorID : Int     = 0
+    var text     : String  = ""
+    var year     : Int     = 0
+    var source   : String  = ""
+    var fave     : Bool    = false
+    var md5      : String  = ""
+    var topic    : Topic   = Topic()
     
     
-    convenience init(txt : String, author : Int, year : Int?, source : String?, fave : Bool, topic : Topic?) {
+    init() {
+        objectID = nil
+        authorID = AnonymousID
+        text     = ""
+        year     = 0
+        source   = ""
+        fave     = false
+        md5      = ""
+        topic    = .Undefined
+    }
+    
+    convenience init(txt : String, author : Int, year : Int?, source : String?, fave : Bool, md5 : String?, topic : Topic?) {
         self.init()
         self.text     = txt
         self.authorID = author
@@ -224,14 +236,24 @@ class Quote {
         if let tp = topic {
             self.topic = tp
         }
+        
+        if let sig = md5 {
+            self.md5 = sig
+        }
+        else {
+            self.md5 = txt.computeFlatMD5()
+        }
     }
     
     convenience init( txt : String ) {
-        self.init(txt: txt, author: 0, year: 0, source: nil, fave: false, topic: .Undefined)
+        self.init(txt: txt, author: 0, year: 0, source: nil, fave: false, md5: nil, topic: .Undefined)
     }
     
     convenience init( txt : String, author: Int ) {
-        self.init(txt: txt, author: author, year: 0, source: nil, fave: false, topic: .Undefined)
+        self.init(txt: txt, author: author, year: 0, source: nil, fave: false, md5 : nil, topic: .Undefined)
+    }
+    convenience init( txt : String, md5: String ) {
+        self.init(txt: txt, author: 0, year: 0, source: nil, fave: false, md5: md5, topic: .Undefined)
     }
 }
 
