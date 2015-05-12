@@ -187,6 +187,7 @@ enum Topic : String {
     case Worship         = "Worship"
     
     case Undefined       = "undef"
+    case None            = ""
     
     init() {
        self = .Undefined
@@ -196,8 +197,36 @@ enum Topic : String {
         let str = self.rawValue
         return( str )
     }
+    
+
+    static let allValues : [Topic] = [
+   	.Ability, .Abuse, .Achievement, .Age, .Anger, .Animals, .Anniversary, .Art, .Attitude, .Beauty, .Beginnings,
+    .Bible, .Birth, .Books, .Boredom, .Bravery, .BreakingUp, .Brevity, .BrokenHeart, .Caution, .Ceremony,
+    .Challenge, .Change, .Character, .Charity, .Children, .Christmas, .College, .Commitment, .CommonSense,
+    .Compassion, .Compromise, .Confidence, .Conflict, .Confusion, .Courage, .Courtesy, .Creation, .Criticism,
+    .Death, .Despair, .Determination, .Disease, .Dreams, .Education, .Enthusiasm, .Envy, .Facts, .Failure, .Faith,
+    .Family, .Fear, .Food, .Forgiveness, .Freedom, .Friends, .Fun, .Generosity, .Genius, .Goals, .God, .Gossip,
+    .Government, .Graduation, .Gratitude, .Greatness, .Grief, .Growth, .Habits, .Happiness, .Hate, .Health,
+    .Heart, .Heaven, .History, .Home, .Honesty, .Honor, .Hope, .Humor, .Hypocrisy, .Ideas, .Idleness, .Ignorance,
+    .Imagination, .Inspirational, .Joy, .Judgement, .Justice, .Kindness, .Knowledge, .LastWords, .Laughter,
+    .Laziness, .Leadership, .Lies, .Life, .Limitations, .Literature, .Loneliness, .Losing, .Love, .Loyalty,
+    .Lying, .Memory, .Mind, .Money, .Mother, .Motivational, .Movies, .Music, .Office, .Opportunity, .Pain,
+    .Patience, .Peace, .People, .Pets, .Perseverance, .Persistence, .Pleasure, .Politics, .Poverty, .Power,
+    .Praise, .Prayers, .Pride, .Problems, .Procrastination, .Proverbs, .Reason, .Rebellion, .Regret,
+    .Relationships, .Religion, .Repentance, .Respect, .Responsibility, .Revenge, .Romance, .Rumor, .Sacrifice,
+    .Sad, .Sanity, .Science, .Service, .Sex, .Sin, .Sleep, .Songs, .Sorrow, .Sports, .Strength, .Stress,
+    .Stupidity, .Success, .Suffering, .Taxes, .Thankfulness, .Time, .Toys, .Trouble, .Truth, .Understanding,
+    .Valor, .Vice, .Virtue, .War, .Weakness, .Weddings, .Wisdom, .Wonder, .Words, .Work, .Worrying, .Worship,
+    .Undefined 
+    ]
+    
 }
 
+
+func numberOfTopics() -> Int {
+    let rv = Topic.allValues.count
+    return( rv )
+}
 
 class Quote {
     
