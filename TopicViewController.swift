@@ -13,11 +13,13 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     var sortedTopics : [String] = []
     var searchTopics : [String] = []
     var searchString : String   = ""
+    var selections   : [String:Bool] = [String:Bool]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         for topic in Topic.allValues {
             sortedTopics.append( topic.rawValue )
+            selections[topic.rawValue] = false
         }
         sortedTopics.sort{ $0 < $1 }
         searchTopics = sortedTopics
@@ -38,10 +40,10 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TopicTableViewCell", forIndexPath: indexPath) as! TopicTableViewCell
         let row = indexPath.row
-        cell.topicLabel.text = searchTopics[row]
-        
-        // Configure the cell...
-        
+        let text = searchTopics[row]
+        cell.topicLabel.text = text
+    
+        cell.accessoryType = (selections[text] == true)  ? .Checkmark : .None
         return cell
     }
     
@@ -53,22 +55,30 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - TableViewDelegate
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let text  = searchTopics[indexPath.row]
+        selections[text] = false
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.accessoryType = .None
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let text  = searchTopics[indexPath.row]
+        selections[text] = true
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.accessoryType = .Checkmark
     }
     
     // MARK: - Search Bar Delegate
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        searchString = searchText
+        searchString = searchText.uppercaseString
         if searchText.isEmpty {
             searchTopics = sortedTopics
         }
         else {
             searchTopics = []
             for topic in sortedTopics {
-                if topic.hasPrefix( searchString ) {
+                if topic.uppercaseString.hasPrefix( searchString ) {
                     searchTopics.append(topic)
                 }
             }
