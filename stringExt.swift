@@ -10,6 +10,7 @@ import Foundation
 
 extension String {
     
+     var length: Int { return count(self)         }  // Swift 1.2
     
     enum charSet :  String {
         
@@ -62,13 +63,30 @@ func strstr( pat : String ) -> String.Index?
  *
  * Returns: String?
  *============================================================================*/
-func trimstr( ) -> String?
-{
-    var rv = ""
-    let tststr = Array( self )
-    rv = String(tststr.filter{$0 != " "})
-    return( rv )
-}
+    func trimstr( ) -> String?
+    {
+        var rv   = self
+        var ii   = 0
+        let tstr = Array(self)
+        if !self.isEmpty {
+            for (ii  = 0; tstr[ii] == " " && ii < rv.length; ii++) {}
+            
+            if ii > 0 {
+                rv = rv.substringWithRange(Range<String.Index>(start: advance(rv.startIndex, ii),
+                    end: rv.endIndex))
+            }
+            
+            for( ii = tstr.count - 1; ii > 0 && tstr[ii] != " "; ii-- ) {}
+            ii = (ii == 0) ? 0 : (-1 * (tstr.count - ii))
+            if ii < 0 {
+                rv = rv.substringWithRange(Range<String.Index>(start: rv.startIndex,
+                    end: advance(rv.endIndex,ii)))
+            }
+        }
+        
+        return( rv )
+    }
+    
     
 /*==============================================================================
  * Method: func purge( set : String ) -> String?

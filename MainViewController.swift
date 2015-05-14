@@ -71,11 +71,11 @@ class MainViewController: UIViewController {
         })
         
         quoteTextView.text = "Please wait..."
-        dispatch_async(GlobalUserInitiatedQueue) {
-           var query = PFQuery(className:"Quotes")
-           quoteStore.shared.count = query.countObjects()
-           self.displayRandomQuote()
-           }
+ //       dispatch_async(GlobalUserInitiatedQueue) {
+  //         var query = PFQuery(className:"Quotes")
+   //        quoteStore.shared.count = query.countObjects()
+//           self.displayRandomQuote()
+    //       }
         }
     
     

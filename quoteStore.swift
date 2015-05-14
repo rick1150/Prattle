@@ -40,7 +40,7 @@ class quoteStore {
         pfobj["Year"    ] = quote.year
         pfobj["Source"  ] = quote.source
         pfobj["Favorite"] = quote.fave
-        pfobj["Topic"   ] = quote.topic.rawValue
+        pfobj["Topic"   ] = quote.topics
         pfobj["MD5"     ] = quote.md5
         log.verbose("-")
     }
@@ -123,10 +123,10 @@ private func toQuote( pfobj : PFObject ) -> Quote {
     {   rv.fave = false }
     if let tstr = pfobj["Topic"   ] as? String
     {
-        rv.topic = Topic(rawValue: tstr )!
+        rv.topics = tstr
     }
     else
-    {   rv.topic = Topic(rawValue: "undef")! }
+    {   rv.topics = "None" }
     return( rv )
 }
 

@@ -15,8 +15,9 @@ let AnonymousID      : Int    =  0
 let AuthorNotFound   : Int    = -1
 let QueryPending     : Int    = -2
 
-class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, TopicsSaverProtocol {
 
+    var topicString = ""
     var quoteDirty  = false
     var authorDirty = false
     var authorID    = AnonymousID
@@ -153,11 +154,12 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 if exists { println("duplicate quote") }
                 else {
                     println(" new quote")
-                    let quote = Quote( txt: self.quoteTextView.text, md5: md5, source: self.sourceTextField.text )
+                    let quote = Quote( txt: self.quoteTextView.text, md5: md5, source: self.sourceTextField.text, topic: self.topicString )
                         self.addNewQuote( quote )
                 }
             })
         }
+       self.navigationController?.popViewControllerAnimated(true)
     }
     
     /*==============================================================================
@@ -183,36 +185,7 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
          })
     }
 
-    /*==============================================================================
-    * Method: func parseAuthorName( name : String ) -> (String, String) {
-    *
-    * Description:
-    *
-    * Parameters:
-    *
-    * Caveats:
-    *
-    * Returns:
-    *============================================================================*/
-    func parseAuthorName( name : String ) -> (String, String) {
-        let names = name.splitAtChar(" ")
-        var fname : String = ""
-        var lname : String = ""
-        var ii = 0
-        if names?.count == 1 {
-            lname = names![0]
-        }
-        else if names?.count == 2 {
-            fname = names![0]; lname = names![1]
-        }
-        if names?.count > 2 {
-            for ii in 0..<(names!.count - 1) {
-                fname = fname + names![ii]
-            }
-        }
-        return( fname, lname )
-    }
-    
+
     /*==============================================================================
     * Method: func addNewQuote( quote : Quote ){
     *
@@ -244,6 +217,8 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
         while ( authorID == QueryPending && !stop) { usleep(addLoopSleepTime) }
         if authorID == AuthorNotFound {
             log.verbose(" author not found -- adding new")
+            let newID = authorStore.shared.getNewAuthorID()
+            authorStore.shared.addNewAuthor(authorTextField.text)
         }
         else { quote.authorID = authorID }
         quoteStore.shared.createQuote( quote, completion:{(success, error) -> Void in
@@ -258,36 +233,20 @@ class AddQuoteViewController: UIViewController, UITextFieldDelegate, UITextViewD
     }
     
     
-    /*==============================================================================
-    * Method: func addNewAuthor( name : String ) {
-    *
-    * Description:
-    *
-    * Parameters:
-    *
-    * Caveats:
-    *
-    * Returns:
-    *============================================================================*/
-    func addNewAuthor( name : String ) {
-        let (fname, lname) = parseAuthorName( name )
-        let author = Author(fname: fname, lname: lname)
-        authorStore.shared.createAuthor(author, completion: nil)
-    }
-    
    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
-    {
-        return 1
-    }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
-    }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return("")
+    func saveTopicsToQuote( topics : String ) -> Void {
+        self.topicString = topics
     }
+    // MARK: - Navigation
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destinationVC  = segue.destinationViewController as? TopicViewController
+        {
+            destinationVC.delegate = self
+        }
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
 }

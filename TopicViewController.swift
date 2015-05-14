@@ -8,13 +8,40 @@
 
 import UIKit
 
+protocol TopicsSaverProtocol {
+    func saveTopicsToQuote( topics : String ) -> Void
+}
+
 class TopicViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+    var delegate : TopicsSaverProtocol!
     var sortedTopics : [String] = []
     var searchTopics : [String] = []
     var searchString : String   = ""
     var selections   : [String:Bool] = [String:Bool]()
-
+    
+    // MARK: outlets/actions
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var topicTableView: UITableView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil )
+    }
+    
+    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBAction func doneButtonTapped(sender: AnyObject) {
+        var rv = ""
+        for (key, value) in selections {
+            if value == true {
+                rv += key + ","
+            }
+        }
+        self.delegate.saveTopicsToQuote( rv )
+        self.dismissViewControllerAnimated(true, completion: nil )
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         for topic in Topic.allValues {
@@ -32,9 +59,7 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var searchBar: UISearchBar!
 
-    @IBOutlet weak var topicTableView: UITableView!
     
     // MARK: - TableViewDataSource
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -71,18 +96,17 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - Search Bar Delegate
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        searchString = searchText.uppercaseString
+        
         if searchText.isEmpty {
             searchTopics = sortedTopics
         }
         else {
-            searchTopics = []
-            for topic in sortedTopics {
-                if topic.uppercaseString.hasPrefix( searchString ) {
-                    searchTopics.append(topic)
-                }
+            if searchText.length < searchString.length {
+                searchTopics = sortedTopics
             }
+            searchTopics = searchTopics.filter( {$0.uppercaseString.hasPrefix( searchText.uppercaseString )})
         }
+        searchString = searchText.uppercaseString
         self.topicTableView.reloadData()
     }
     

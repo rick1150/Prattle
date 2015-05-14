@@ -150,6 +150,24 @@ class authorStore {
         log.verbose("-")
     }
     
+    
+    /*==============================================================================
+    * Method: func addNewAuthor( name : String ) {
+    *
+    * Description:
+    *
+    * Parameters:
+    *
+    * Caveats:
+    *
+    * Returns:
+    *============================================================================*/
+    func addNewAuthor( name : String ) {
+        let (fname, lname) = parseAuthorName( name )
+        let author = Author(fname: fname, lname: lname)
+        authorStore.shared.createAuthor(author, completion: nil)
+    }
+    
     /*==============================================================================
     * Method: func getNewAuthorID() -> Int {
     *
